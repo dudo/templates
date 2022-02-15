@@ -1,0 +1,24 @@
+services:
+  bundle: &bundle
+    env_file: .env
+    tty: true
+    stdin_open: true
+    build:
+      context: .
+      args:
+        BUNDLE_GITHUB__COM: ${BUNDLE_GITHUB__COM}
+        BUNDLE_GEM__FURY__IO: ${BUNDLE_GEM__FURY__IO}
+        WITH: test
+    entrypoint: bundle
+    command: version
+    volumes:
+      - .:/usr/src/app:delegated
+      - bundle:/usr/local/bundle
+      - ${LOCAL_GEM_PATH:-..}:/local
+
+  app:
+    <<: *bundle
+    command: exec ruby ./app.rb
+
+volumes:
+  bundle: {}
