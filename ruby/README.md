@@ -10,6 +10,8 @@ echo "alias dr='docker compose run --rm '" >> ~/.zshrc
 
 ## Usage
 
+### cli
+
 ```sh
 dr bundle install
 dr bundle update some-gem --conservative
@@ -20,4 +22,12 @@ dr console
 
 dr rspec spec
 dr rspec spec/some/file_spec.rb:39
+```
+
+### deps
+
+```ruby
+# Gemfile
+
+gem "some-gem", path: "/local/some-gem"
 ```
