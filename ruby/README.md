@@ -16,6 +16,8 @@ dr bundle update some-gem --conservative
 
 docker compose up -d
 
+dr console
+
 dr rspec spec
 dr rspec spec/some/file_spec.rb:39
 ```
