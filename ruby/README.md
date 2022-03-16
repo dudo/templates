@@ -8,6 +8,12 @@ brew install --cask docker
 echo "alias dr='docker compose run --rm '" >> ~/.zshrc
 ```
 
+### env
+
+```sh
+export LOCAL_GEM_PATH=~/gems
+```
+
 ## Usage
 
 ### cli
