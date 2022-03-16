@@ -8,7 +8,7 @@ services:
       args:
         BUNDLE_GITHUB__COM: ${BUNDLE_GITHUB__COM}
         BUNDLE_GEM__FURY__IO: ${BUNDLE_GEM__FURY__IO}
-        WITH: test
+        WITH: test development
     entrypoint: bundle
     command: version
     volumes:
@@ -16,9 +16,20 @@ services:
       - bundle:/usr/local/bundle
       - ${LOCAL_GEM_PATH:-..}:/local
 
-  app:
+  server:
     <<: *bundle
-    command: exec ruby ./app.rb
+    # command: exec ruby ./app.rb
+    # command: exec rails s -b 0.0.0.0
+    
+  console:
+    <<: *bundle
+    # command: exec console
+    # command: exec rails c
+    
+  rspec:
+    <<: *bundle
+    entrypoint: bundle exec rspec
+    command: --help
 
 volumes:
   bundle: {}
